@@ -4,6 +4,7 @@ from ctypes.wintypes import RECT
 import pyautogui
 import win32api
 import win32print
+from numpy import ndarray
 
 from source.common import static_lib
 from source.common import timer_module
@@ -177,8 +178,6 @@ class WindowsCapture(Capture):
 
 if __name__ == '__main__':
     wc = WindowsCapture()
-    # wc._get_screen_scale_factor()
     while 1:
         cv2.imshow("capture test", wc.capture())
         cv2.waitKey(10)
-        # time.sleep(0.01)

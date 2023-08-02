@@ -3,7 +3,7 @@ from source.util import *
 global W_KEYDOWN, HANDLE
 W_KEYDOWN = False
 
-
+exe_name='向日葵远程控制'
 def get_handle():
     """获得句柄
 
@@ -11,10 +11,8 @@ def get_handle():
         _type_: _description_
     """
     if True:
-        handle = ctypes.windll.user32.FindWindowW(None, 'Genshin Impact')
-        if handle != 0:
-            return handle
-        handle = ctypes.windll.user32.FindWindowW(None, '原神')
+
+        handle = ctypes.windll.user32.FindWindowW(None, exe_name)
         if handle != 0:
             return handle
 

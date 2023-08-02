@@ -1,14 +1,23 @@
-import time, math, shutil, sys, os, json
-import win32gui, win32process, psutil, ctypes, pickle, traceback
-import numpy as np
-from loguru import logger
-from numpy import ndarray
-import cv2, yaml
-from PIL import Image, ImageDraw, ImageFont
+import json
+import math
+import os
+import shutil
+import sys
+import time
 from collections import OrderedDict
 from typing import Union
 
-from cvars import ANGLE_NEGATIVE_Y, ANGLE_NORMAL
+import ctypes
+import cv2
+import numpy as np
+import pickle
+import psutil
+import traceback
+import win32gui
+import win32process
+import yaml
+from PIL import Image, ImageDraw, ImageFont
+from loguru import logger
 
 ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SOURCE_PATH = ROOT_PATH + '\\source'
@@ -187,37 +196,37 @@ def is_int(x):
         return True
 
 
-def points_angle(p1, target_posi, coordinate=ANGLE_NORMAL):
-    """计算两点间角度.
-
-    Args:
-        p1 (_type_): _description_
-        p2 (_type_): _description_
-        coordinate (_type_, optional): _description_. Defaults to ANGLE_NORMAL.
-
-    Returns:
-        _type_: _description_
-    """
-    # p1: current point
-    # p2: target point
-    x = p1[0]
-    y = p1[1]
-    tx = target_posi[0]
-    ty = target_posi[1]
-    if coordinate == ANGLE_NEGATIVE_Y:
-        y = -y
-        ty = -ty
-    k = (ty - y) / (tx - x)
-    degree = math.degrees(math.atan(k))
-    if degree < 0:
-        degree += 180
-    if ty < y:
-        degree += 180
-
-    degree -= 90
-    if degree > 180:
-        degree -= 360
-    return degree
+# def points_angle(p1, target_posi, coordinate=ANGLE_NORMAL):
+#     """计算两点间角度.
+#
+#     Args:
+#         p1 (_type_): _description_
+#         p2 (_type_): _description_
+#         coordinate (_type_, optional): _description_. Defaults to ANGLE_NORMAL.
+#
+#     Returns:
+#         _type_: _description_
+#     """
+#     # p1: current point
+#     # p2: target point
+#     x = p1[0]
+#     y = p1[1]
+#     tx = target_posi[0]
+#     ty = target_posi[1]
+#     if coordinate == ANGLE_NEGATIVE_Y:
+#         y = -y
+#         ty = -ty
+#     k = (ty - y) / (tx - x)
+#     degree = math.degrees(math.atan(k))
+#     if degree < 0:
+#         degree += 180
+#     if ty < y:
+#         degree += 180
+#
+#     degree -= 90
+#     if degree > 180:
+#         degree -= 360
+#     return degree
 
 
 def add_angle(angle, delta):
